@@ -6,7 +6,7 @@
 	<version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>jobstats</name>
-	<description>Utilities API for Java</description>
+	<description>Job Positions Stats for Java</description>
 	<url>http://github.com/brunocvcunha/jobstats</url>
 
 	<licenses>
@@ -82,6 +82,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!--  Logging -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -112,4 +119,5 @@
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 	</properties>
+	
 </project>
