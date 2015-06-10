@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * 
+ * Position POJO
  * @author Bruno Candido Volpato da Cunha
  *
  */
