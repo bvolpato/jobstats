@@ -84,7 +84,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 
 					found.add(getPositionFromDiv(job));
 
-					if (maximum > 0 && found.size() > maximum) {
+					if (maximum > 0 && found.size() >= maximum) {
 						break fetcher;
 					}
 
