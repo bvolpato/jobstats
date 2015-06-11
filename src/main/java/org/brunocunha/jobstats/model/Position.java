@@ -18,6 +18,7 @@ public class Position {
 	private String location;
 	private Date postedDate;
 	
+	private String shortDescription;
 	private String jobDescription;
 	private String jobSkills;
 	

@@ -70,7 +70,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 
 		fetcher: while (true) {
 			Document jobs = getDocumentFromPage(keyword, page++);
-			log.info("Fetch page " + page + " (keyword: " + keyword + " - "
+			log.info("Fetch page " + page + " (keyword: " + keyword + ") - "
 					+ jobs.title());
 
 			Elements jobElements = jobs.select("div[data-jobid]");
@@ -131,6 +131,8 @@ public class StackOverflowCrawler implements IJobSeeker {
 	 * @param jobUrl
 	 */
 	private void parsePositionDetails(Position pos, String jobUrl) {
+		log.info("Fetching URL " + jobUrl);
+		
 		String jobContent = MyStringUtils.getContent(jobUrl);
 		Document jobDocument = Jsoup.parse(jobContent);
 
@@ -168,6 +170,8 @@ public class StackOverflowCrawler implements IJobSeeker {
 			sbUrl.append("&pg=" + page);
 		}
 
+		log.info("Fetching URL " + sbUrl.toString());
+		
 		String content = MyStringUtils.getContent(sbUrl.toString());
 		return Jsoup.parse(content);
 
