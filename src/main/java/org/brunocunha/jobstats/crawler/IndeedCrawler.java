@@ -1,7 +1,11 @@
 package org.brunocunha.jobstats.crawler;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +18,7 @@ import org.brunocunha.inutils4j.MyDateUtils;
 import org.brunocunha.inutils4j.MyHTTPUtils;
 import org.brunocunha.inutils4j.MyStringUtils;
 import org.brunocunha.jobstats.model.Position;
+import org.brunocunha.jobstats.multiparser.JobPageParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,6 +33,8 @@ import org.jsoup.select.Elements;
 @Log4j
 public class IndeedCrawler implements IJobSeeker {
 
+	private static final File TEMP_DIR = new File("E:\\tmp\\crawler");
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -110,7 +117,7 @@ public class IndeedCrawler implements IJobSeeker {
 
 		Position pos = new Position();
 		pos.setOrigin(getSeekerName());
-		pos.setOriginId(job.attr("data-jk"));
+		pos.setOriginId(job.attr("data-jk").trim());
 		
 		String postedDateString = job.select("div.result-link-bar").select("span.date").text().trim();
 		Date jobDate = null;
@@ -138,13 +145,16 @@ public class IndeedCrawler implements IJobSeeker {
 				log.debug("<< " + headerName + ": " + headers.get(headerName));
 			}
 			
-			String redirLocation = headers.get("Location").get(0);
-			
-			log.info("Found original location: " + redirLocation);
-			
-			pos.setOriginUrl(redirLocation);
-	
-			parsePositionDetails(pos, redirLocation);
+			List<String> location =  headers.get("Location");
+			if (location != null) {
+				String redirLocation = location.get(0);
+				
+				log.info("Found original location: " + redirLocation);
+				
+				pos.setOriginUrl(redirLocation);
+		
+				parsePositionDetails(pos, redirLocation);
+			}
 		} catch(Exception e) {
 			log.error("Error occurred while fetching job details - " + pos.getOriginUrl(), e);
 		}
@@ -156,22 +166,30 @@ public class IndeedCrawler implements IJobSeeker {
 	 * 
 	 * @param pos
 	 * @param jobUrl
+	 * @throws URISyntaxException 
+	 * @throws IOException 
 	 */
-	private void parsePositionDetails(Position pos, String jobUrl) {
-		log.info("Fetching URL " + jobUrl);
+	private void parsePositionDetails(Position pos, String jobUrl) throws URISyntaxException, IOException {
+		log.info("parsePositionDetails Fetching URL " + jobUrl);
+		
+		
+		URI uri = new URI(jobUrl);
 		
 		String jobContent = MyStringUtils.getContent(jobUrl);
-		Document jobDocument = Jsoup.parse(jobContent);
-
-		pos.setCompanyName(jobDocument.select("a.employer").text());
-		pos.setJobDescription(jobDocument.select("div.jobdetail")
-				.select("div.description").text());
-
-		List<String> tags = new ArrayList<String>();
-		for (Element tag : jobDocument.select("a.post-tag")) {
-			tags.add(tag.text());
+		
+		try {
+			File writeDoc = new File(TEMP_DIR, uri.getHost() + "_" + pos.getOriginId() + " .html");
+			FileWriter out = new FileWriter(writeDoc);
+			out.write("<!-- " + pos.getOriginUrl() + " -->\r\n");
+			out.write(jobContent);
+			out.close();
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
-		pos.setTags(tags);
+		
+		Document jobDocument = Jsoup.parse(jobContent);
+		JobPageParser.parseJobPage(pos, jobUrl, jobDocument);
+		
 	}
 
 	/**

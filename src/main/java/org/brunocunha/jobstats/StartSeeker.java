@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j;
 
 import org.brunocunha.jobstats.crawler.IJobSeeker;
 import org.brunocunha.jobstats.crawler.IndeedCrawler;
-import org.brunocunha.jobstats.elasticsearch.ElasticSearchHelper;
 import org.brunocunha.jobstats.model.Position;
 
 /**
@@ -27,7 +26,7 @@ public class StartSeeker {
 		seekers.add(new IndeedCrawler());
 
 		for (IJobSeeker seeker : seekers) {
-			List<Position> found = seeker.fetch("flex", 10);
+			List<Position> found = seeker.fetch("java", 1000);
 			for (Position job : found) {
 				log.info("Job --> " + job);
 			}

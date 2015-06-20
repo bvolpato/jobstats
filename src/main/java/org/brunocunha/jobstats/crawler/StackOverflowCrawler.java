@@ -2,6 +2,7 @@ package org.brunocunha.jobstats.crawler;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import lombok.extern.log4j.Log4j;
 import org.brunocunha.inutils4j.MyDateUtils;
 import org.brunocunha.inutils4j.MyStringUtils;
 import org.brunocunha.jobstats.model.Position;
+import org.brunocunha.jobstats.multiparser.JobPageParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -103,8 +105,10 @@ public class StackOverflowCrawler implements IJobSeeker {
 	 * 
 	 * @param job
 	 * @return
+	 * @throws IOException 
+	 * @throws URISyntaxException 
 	 */
-	private Position getPositionFromDiv(Element job) {
+	private Position getPositionFromDiv(Element job) throws URISyntaxException, IOException {
 
 		Position pos = new Position();
 		pos.setOrigin(getSeekerName());
@@ -129,23 +133,12 @@ public class StackOverflowCrawler implements IJobSeeker {
 	 * 
 	 * @param pos
 	 * @param jobUrl
+	 * @throws IOException 
+	 * @throws URISyntaxException 
 	 */
-	private void parsePositionDetails(Position pos, String jobUrl) {
+	private void parsePositionDetails(Position pos, String jobUrl) throws URISyntaxException, IOException {
 		log.info("Fetching URL " + jobUrl);
-		
-		String jobContent = MyStringUtils.getContent(jobUrl);
-		Document jobDocument = Jsoup.parse(jobContent);
-
-		pos.setCompanyName(jobDocument.select("a.employer").text());
-		pos.setLocation(jobDocument.select("span.location").text());
-		pos.setJobDescription(jobDocument.select("div.jobdetail")
-				.select("div.description").text());
-
-		List<String> tags = new ArrayList<String>();
-		for (Element tag : jobDocument.select("a.post-tag")) {
-			tags.add(tag.text());
-		}
-		pos.setTags(tags);
+		JobPageParser.parseJobPage(pos, jobUrl);
 	}
 
 	/**
