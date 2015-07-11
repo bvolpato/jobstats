@@ -36,15 +36,15 @@ public class JobPageParserTest {
 	@Test
 	public void testStackoverflow() throws URISyntaxException, IOException {
 		Position pos = new Position();
-		JobPageParser.parseJobPage(pos, "http://careers.stackoverflow.com/jobs/91044/senior-software-engineer-boku?a=ux48oTHx1de&searchTerm=java&so=p");
+		JobPageParser.parseJobPage(pos, "http://careers.stackoverflow.com/jobs/91044/rails-developer-software-engineer-ror-connexity?searchTerm=java");
 		
 		log.info(pos);
 		
-		assertEquals("Senior Software Engineer", pos.getJobTitle());
-		assertEquals("Boku", pos.getCompanyName());
-		assertEquals("San Francisco, CA (relocation offered) (visa sponsorship offered)", pos.getLocation());
-		assertTrue(pos.getJobDescription().contains("Work hands-on with an agile, highly-skilled team of engineers"));
-		assertEquals("java", pos.getTags().get(0));
+		assertEquals("Rails Developer / Software Engineer (ROR)", pos.getJobTitle());
+		assertEquals("Connexity", pos.getCompanyName());
+		assertEquals("Camarillo, CA (allows remote)", pos.getLocation());
+		assertTrue(pos.getJobDescription().contains("Building Ruby/Rails interfaces"));
+		assertEquals("ruby", pos.getTags().get(0));
 
 	}
 	
