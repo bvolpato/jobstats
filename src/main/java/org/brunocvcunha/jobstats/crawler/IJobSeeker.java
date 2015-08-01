@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.crawler;
+package org.brunocvcunha.jobstats.crawler;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.model.Position;
 
 
 /**

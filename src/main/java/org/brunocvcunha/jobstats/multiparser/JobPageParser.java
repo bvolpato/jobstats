@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.multiparser;
+package org.brunocvcunha.jobstats.multiparser;
 
 import java.io.IOException;
 import java.net.URI;
@@ -24,8 +24,8 @@ import java.util.Properties;
 
 import lombok.extern.log4j.Log4j;
 
-import org.brunocunha.inutils4j.MyStringUtils;
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.inutils4j.MyStringUtils;
+import org.brunocvcunha.jobstats.model.Position;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

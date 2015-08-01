@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats;
+package org.brunocvcunha.jobstats;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ import java.util.List;
 
 import lombok.extern.log4j.Log4j;
 
-import org.brunocunha.jobstats.crawler.IJobSeeker;
-import org.brunocunha.jobstats.crawler.IndeedCrawler;
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.crawler.IJobSeeker;
+import org.brunocvcunha.jobstats.crawler.IndeedCrawler;
+import org.brunocvcunha.jobstats.model.Position;
 
 /**
  * Launcher class, that executes the search and indexes on ElasticSearch

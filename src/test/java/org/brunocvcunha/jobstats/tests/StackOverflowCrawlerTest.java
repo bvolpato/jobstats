@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.tests;
+package org.brunocvcunha.jobstats.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.brunocunha.jobstats.crawler.IJobSeeker;
-import org.brunocunha.jobstats.crawler.StackOverflowCrawler;
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.crawler.IJobSeeker;
+import org.brunocvcunha.jobstats.crawler.StackOverflowCrawler;
+import org.brunocvcunha.jobstats.model.Position;
 import org.junit.Test;
 
 public class StackOverflowCrawlerTest {

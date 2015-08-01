@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.elasticsearch;
+package org.brunocvcunha.jobstats.elasticsearch;
 
 import java.io.IOException;
 import java.util.List;
 
 import lombok.extern.log4j.Log4j;
 
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.model.Position;
 import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;

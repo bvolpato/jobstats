@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.crawler;
+package org.brunocvcunha.jobstats.crawler;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -25,10 +25,10 @@ import java.util.List;
 
 import lombok.extern.log4j.Log4j;
 
-import org.brunocunha.inutils4j.MyDateUtils;
-import org.brunocunha.inutils4j.MyStringUtils;
-import org.brunocunha.jobstats.model.Position;
-import org.brunocunha.jobstats.multiparser.JobPageParser;
+import org.brunocvcunha.inutils4j.MyDateUtils;
+import org.brunocvcunha.inutils4j.MyStringUtils;
+import org.brunocvcunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.multiparser.JobPageParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -46,7 +46,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.brunocunha.jobstats.crawler.IJobSeeker#getSeekerName()
+	 * @see org.brunocvcunha.jobstats.crawler.IJobSeeker#getSeekerName()
 	 */
 	public String getSeekerName() {
 		return "StackOverflow";
@@ -55,7 +55,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.brunocunha.jobstats.crawler.IJobSeeker#fetch()
+	 * @see org.brunocvcunha.jobstats.crawler.IJobSeeker#fetch()
 	 */
 	@Override
 	public List<Position> fetch() throws IOException {
@@ -65,7 +65,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.brunocunha.jobstats.crawler.IJobSeeker#fetch(java.lang.String)
+	 * @see org.brunocvcunha.jobstats.crawler.IJobSeeker#fetch(java.lang.String)
 	 */
 	@Override
 	public List<Position> fetch(String keyword) throws IOException {
@@ -75,7 +75,7 @@ public class StackOverflowCrawler implements IJobSeeker {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.brunocunha.jobstats.crawler.IJobSeeker#fetch(java.lang.String,
+	 * @see org.brunocvcunha.jobstats.crawler.IJobSeeker#fetch(java.lang.String,
 	 * int)
 	 */
 	@Override

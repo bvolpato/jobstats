@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.brunocunha.jobstats.multiparser;
+package org.brunocvcunha.jobstats.multiparser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,8 @@ import java.net.URISyntaxException;
 
 import lombok.extern.log4j.Log4j;
 
-import org.brunocunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.model.Position;
+import org.brunocvcunha.jobstats.multiparser.JobPageParser;
 import org.junit.Test;
 
 @Log4j
