@@ -1,2 +1,2 @@
 # jobstats
-Statistical analysis of public jobs database
+:briefcase: Statistical analysis of public jobs database
