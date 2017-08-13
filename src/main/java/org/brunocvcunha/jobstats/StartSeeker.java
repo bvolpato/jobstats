@@ -19,11 +19,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.extern.log4j.Log4j;
-
+import org.brunocvcunha.ghostme4j.GhostMe;
+import org.brunocvcunha.ghostme4j.helper.GhostMeHelper;
 import org.brunocvcunha.jobstats.crawler.IJobSeeker;
 import org.brunocvcunha.jobstats.crawler.IndeedCrawler;
 import org.brunocvcunha.jobstats.model.Position;
+
+import lombok.extern.log4j.Log4j;
 
 /**
  * Launcher class, that executes the search and indexes on ElasticSearch
@@ -35,6 +37,9 @@ import org.brunocvcunha.jobstats.model.Position;
 public class StartSeeker {
 
 	public static void main(String[] args) throws IOException {
+
+	    GhostMeHelper.disableSslVerification();
+	    //GhostMe.applyUserAgent();
 
 		List<IJobSeeker> seekers = new ArrayList<IJobSeeker>();
 		//seekers.add(new StackOverflowCrawler());

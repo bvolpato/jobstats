@@ -48,7 +48,7 @@ import org.jsoup.select.Elements;
 @Log4j
 public class IndeedCrawler implements IJobSeeker {
 
-	private static final File TEMP_DIR = new File("E:\\tmp\\crawler");
+	private static final File TEMP_DIR = new File("/tmp/crawler");
 	
 	/*
 	 * (non-Javadoc)
@@ -193,7 +193,11 @@ public class IndeedCrawler implements IJobSeeker {
 		String jobContent = MyStringUtils.getContent(jobUrl);
 		
 		try {
-			File writeDoc = new File(TEMP_DIR, uri.getHost() + "_" + pos.getOriginId() + " .html");
+			File writeDoc = new File(TEMP_DIR, uri.getHost() + "_" + pos.getOriginId() + ".html");
+			if (!writeDoc.getParentFile().exists()) {
+			    writeDoc.getParentFile().mkdirs();
+			}
+			
 			FileWriter out = new FileWriter(writeDoc);
 			out.write("<!-- " + pos.getOriginUrl() + " -->\r\n");
 			out.write(jobContent);
